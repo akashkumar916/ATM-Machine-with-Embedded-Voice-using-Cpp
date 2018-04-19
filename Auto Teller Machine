@@ -1,0 +1,480 @@
+# ATM-Machine-with-Embedded-Voice-using-Cpp
+Auto Teller Machine with Embedded Voice that is help user to navigate through it using C++ Program
+here is code-
+
+
+#include<iostream>
+#include<fstream>
+#include<windows.h>
+#include<stdlib.h>
+#include "mmsystem.h"
+using namespace std;
+void acccount();
+void details();
+void deposit();
+void balance1();
+void withdraw();
+void modify1();
+
+class account{
+	
+public:	int account_number;
+	char name[40];
+	int adhar;
+	char gender[30];
+	char type[10];
+	 int deposit_money;
+   char de;
+void get();
+
+void modify();
+int returnacc() ;
+
+int balance() ;
+void show1(){
+	
+	cout<<"your details\n";
+	cout<<"account number is:"<<account_number<<"\n";
+	cout<<"name is:"<<name<<"\n";
+	cout<<"gender is:"<<gender<<"\n";
+		cout<<"tyoe of account is:"<<type<<"\n";
+    cout<<"deposit money:"<<deposit_money<<"\n";
+					
+	
+}
+
+};
+class derived:public account{
+//	public:void show1();
+};
+void account::get(){
+int i,c,j;
+  	for(i=0;i<10;i++){
+		for(c=5;c>i;c--){
+			cout<"";
+		}
+		for(j=0;j<i;j++){
+			
+		
+		cout<<"*";
+		
+	}
+
+	}
+    cout<<"\n\nEnter Name : ";
+   cin>>name;
+   cout<<"enter your gender:";
+   cin>>gender;
+     cout<<"\nenter your addhar card no :";
+    cin>>adhar;
+    cout<<"\nenter type of account:";
+    cin>>type;
+     cout<<"\nChoose The Account Number :";
+    cin>>account_number;
+    cout<<"\nyou want to enter Amount to deposit intially :";
+    cin>>de;
+	if(de=='y'||de=='Y'){
+		cout<<"\nenter amount";
+		cin>>deposit_money;
+		Sleep(1000);
+		   cout<<"\nCREATING.........wait a while";
+    	Sleep(5000);
+    		cout<<"\ncongrualtion for your new account";
+
+
+	}   else{}
+	
+ 	Sleep(2000);
+	cout<<"\nThank you for using our service";
+		Sleep(2000);
+}
+/*void derived::show1(){
+	
+	cout<<"your details\n";
+	cout<<"account number is:"<<account_number<<"\n";
+	cout<<"name is:"<<name<<"\n";
+    cout<<"deposit money:"<<deposit_money<<"\n";
+					
+	
+}*/
+void account::modify(){
+	
+  cout<<"\nEnter new Account Number :";
+    cin>>account_number;
+    cout<<"\n\nEnter new Name of The Account Holder : ";
+    cin>>name;
+    cout<<"\nEnter Amount";
+    cin>>deposit_money;    
+    cout<<"\n\n\nYour account is modify..";
+	
+}//accesor//which return public account number member
+int account::returnacc(){
+	return account_number;
+} 
+
+int account::balance(){
+	return  deposit_money;
+}
+account acc;
+derived der;
+int main(){
+
+
+
+		system("Color 70");	
+	  int ch,i,j,c,v;
+	cout<<"\n\t\tWELCOME TO AKKU ATM WORLD HOW  CAN I  HELP U\n";
+	for(i=0;i<5;i++){
+		for(c=9;c>i;c--){
+			cout<" ";
+		}
+		for(j=0;j<i;j++){
+			
+		
+		cout<<"*";
+		
+	}
+	cout<<"\n";
+	}
+		for(i=0;i<10;i++){
+		for(c=5;c>i;c--){
+			cout<"";
+		}
+		for(j=0;j<i;j++){
+			
+		
+		cout<<"*";
+		
+	}
+	}
+	cout<<"\t\t\t\t\t\t\t\t\t\t\t\t\nSELECT ANY ONE TO PROCEED";
+	cout<<"\t\t\t\t\t\t\t\t\t\t\t\t\n1.NEW ACCOUNT";
+	cout<<"\t\t\t\t\t\t\t\t\t\t\t\t\n2.SHOW MY ACCOUNT DETAILS\n";
+	cout<<"3.BALANCE ENQUIRY";
+	cout<<"\t\t\t\t\t\t\t\t\t\t\t\t\n4.MODIFY";
+
+	cout<<"\t\t\t\t\t\t\t\t\t\t\t\t\n5.WITHDRAW";
+		cout<<"\t\t\t\t\t\t\t\t\t\t\t\t\n6.DEPOSIT";
+	cout<<"\t\t\t\t\t\t\t\t\t\t\t\t\n7.EXIT";
+	cout<<"\n";
+	cin>>ch;
+	switch(ch){
+		
+		case 1:acccount();
+	    main();
+		break;
+			
+		case 2:details();
+		main();
+		break;
+			case 3:balance1();
+			main();
+		break;
+			case 4:modify1();
+			main();
+		break;
+		
+			case 5:withdraw();
+			main();
+		break;
+			case 6:deposit();
+			main();
+		break;
+			case 7:		PlaySound(TEXT("y.wav"),NULL,SND_SYNC);
+			cout<<"Thank you for visiting";
+			Sleep(1000);
+		break;
+			default:main();
+		break;
+		
+	
+	}
+}
+void acccount()
+{	PlaySound(TEXT("welcome.wav"),NULL,SND_SYNC);
+	ofstream file;
+	file.open("akku1.doc", ios::app);
+	acc.get();
+	file.write((char*)&acc,sizeof(acc));
+		file.close();
+	
+}	
+	
+void details()	
+	{
+	static int c1=0;
+	int d;
+   int c=2;
+   	cout<<"enter your account number";
+	cin>>d;
+	if(acc.returnacc()==d){
+	
+   acc.show1();
+}else if(c1!=2){
+
+c1++;
+cout<<"try again for it \n";
+details();}
+else  {	cout<<"looking like with wrong intention\n";
+	PlaySound(TEXT("police.wav"),NULL,SND_SYNC);
+	Beep(523,2500);
+
+	cout<<"run run as you can\n";
+	cout<<"Not authorised person";
+	Sleep(2000);
+	
+	
+	}
+
+	ifstream file1;
+	file1.open("akku1.doc");
+           while(file1.read((char*)&acc, sizeof(acc)))
+    {
+        if(acc.returnacc()==d)
+        {
+           acc.show1();
+           Sleep(1000);
+           c=2;
+        }
+    }
+    file1.close();
+    if(c!=2)
+     {
+ cout<<"\n\nAccount number does not exist";
+}
+	}
+
+void balance1(){
+  int c=3;
+  static int c1=0;
+		int d;
+	cout<<"enter your account number";
+	cin>>d;
+	if(acc.returnacc()==d){
+	
+	cout<<"\nyour balance is:";
+	cout<<acc.balance()<<"\n"; 
+	}else if(c1!=2){
+
+c1++;
+cout<<"try again for it \n";
+details();}
+else  {
+		cout<<"looking like with wrong intention\n";
+	PlaySound(TEXT("police.wav"),NULL,SND_SYNC);
+	Beep(523,2500);
+
+	cout<<"run run as you can\n";
+	cout<<"Not authorised person";
+	Sleep(2000);
+	
+	}	ifstream file;
+	file.open("akku1.doc");
+
+while(file.read((char*)&acc,sizeof(acc))){
+	if(acc.returnacc()==d){
+	Sleep(2000);
+	cout<<"your balance is:";
+	cout<<acc.balance()<<"\n"; 
+	Sleep(2000);
+	c=3;
+	}}
+	if(c!=3){
+	
+
+		cout<<"not authorised";
+			Sleep(2000);
+	}
+
+
+}
+
+
+void modify1()
+{
+	fstream file;
+	file.open("akku1.doc",ios::in|ios::out);
+int c=3;
+static  int c1=0;
+		int d;
+	cout<<"enter your account number";
+	cin>>d;
+	cout<<"\n";
+	if(acc.returnacc()==d){
+	
+		acc.modify();
+		Sleep(1000);
+			file.write((char*)&acc,sizeof(acc));
+	}else if(c1!=2){
+
+c1++;
+cout<<"try again for it \n";
+modify1();}
+else  {
+	cout<<"looking like with wrong intention\n";
+	PlaySound(TEXT("police.wav"),NULL,SND_SYNC);
+	Beep(523,2500);
+
+	cout<<"run run as you can\n";
+	cout<<"Not authorised person";
+	Sleep(2000);
+	
+	}
+	while(file.read((char*)&acc,sizeof(acc))){
+	
+	if(acc.returnacc()==d){
+	
+	acc.modify();
+	file.write((char*)&acc,sizeof(acc));
+	Sleep(2000);
+	c=3;
+	cout<<"successful modify";
+	Sleep(1000);
+	}}
+	
+		if(c!=3)
+		{Sleep(2000);
+		
+		
+		cout<<"not authorised";
+			Sleep(2000);
+	}
+
+
+file.close();
+
+}
+   
+void withdraw(){
+	int d;
+	int f;	
+int c=3;
+	cout<<"enter your account number";
+	cin>>d;
+	static int c1=0;	
+		if(acc.returnacc()==d){
+		
+		cout<<"enter to withdraw";
+		cin>>f;
+
+	if(acc.balance()<f){
+			Sleep(2000);
+				Beep(523,2500);
+	Beep(523,2500);
+		cout<<"sorry,you cannot withdraw";
+	}
+
+	else{
+	c=3;
+	acc.deposit_money-=d;
+		Sleep(2000);
+			PlaySound(TEXT("withdraw.wav"),NULL,SND_SYNC);
+			Sleep(1000);	
+	cout<<"withdrawn successful";
+		Sleep(2000);
+	}}else if(c1!=2){
+
+c1++;
+cout<<"try again for it \n";
+withdraw();}
+else  {
+	cout<<"looking like with wrong intention\n";
+	PlaySound(TEXT("police.wav"),NULL,SND_SYNC);
+	Beep(523,2500);
+
+	cout<<"run run as you can\n";
+	cout<<"Not authorised person";
+	Sleep(2000);
+	
+	
+	}
+		fstream file;
+	file.open("akku.txt",ios::in|ios::out);
+
+while(file.read((char*)&acc,sizeof(acc))){
+
+	if(acc.returnacc()==d){
+	cout<<"enter to withdraw";
+	cin>>f;
+	if(acc.balance()<f){
+			Sleep(2000);
+			
+		cout<<"sorry,you cannot withdraw";
+	}
+}
+	else{
+	c=3;
+	acc.deposit_money-=d;
+		Sleep(2000);
+	cout<<"withdrawn successful";
+		Sleep(2000);
+	}
+	file.write((char*)&acc,sizeof(acc));
+	
+	}
+	
+		if(c!=3){	
+		Sleep(2000);
+	cout<<"not authorised";
+		Sleep(2000);
+	}
+
+	
+	
+}
+
+void deposit(){
+		fstream file;
+	file.open("akku.txt",ios::in|ios::out);
+		int f;	
+		static int c1=0;
+	int c=3;
+		int d;
+	cout<<"enter your account number";
+	cin>>d;
+		if(acc.returnacc()==d){
+	cout<<"enter to deposit";
+	cin>>f;
+    acc.deposit_money+=d;
+		Sleep(2000);
+	cout<<"deposit successful";
+		Sleep(2000);
+		c=3;
+		file.write((char*)&acc,sizeof(acc));
+	}else if(c1!=2){
+
+c1++;
+cout<<"try again for it \n";
+deposit();}
+else  {		cout<<"looking like with wrong intention\n";
+	PlaySound(TEXT("police.wav"),NULL,SND_SYNC);
+	Beep(523,2500);
+
+	cout<<"run run as you can\n";
+	cout<<"Not authorised person";
+	Sleep(2000);
+	
+	}
+	
+
+	while(file.read((char*)&acc,sizeof(acc))){
+	
+	if(acc.returnacc()==d){
+	cout<<"enter to deposit";
+	cin>>f;
+    acc.deposit_money+=d;
+		Sleep(2000);
+	cout<<"deposit successful";
+		Sleep(2000);
+		c=3;
+		file.write((char*)&acc,sizeof(acc));
+	}}
+		if(c!=3){	Sleep(2000);
+	 cout<<"not authorised";
+		Sleep(2000);
+	}
+
+	
+	
+	
+}
